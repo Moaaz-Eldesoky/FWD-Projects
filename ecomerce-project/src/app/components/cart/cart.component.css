@@ -1,4 +1,4 @@
-img {
+/* img {
   width: 100px;
   border-radius: 10px;
 }
@@ -42,4 +42,33 @@ img {
   display: flex;
   justify-content: center;
   margin-top: 64px;
+} */
+
+img {
+  width: 100px;
+  border-radius: 10px;
+
+}
+.product-cart{
+  display: flex;
+  justify-content: space-around;
+margin-top: 20px;
+}
+.prods{
+margin-top: 50px;
+}
+.product-cart h5{
+  display: inline;
+}
+.product-cart input{
+  width: 120px;
+}
+.user-data{
+  margin-top: 50px;
+}
+.sub-btn{
+  margin-top: 20px;
+}
+label{
+  margin-top: 20px;
 }
