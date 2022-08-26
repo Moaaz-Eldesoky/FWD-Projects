@@ -9,7 +9,7 @@
               <h4>{{ item.name }}</h4>
               <p>{{ item.price }}</p>
               <h5>Amount:</h5>
-              <input type="text" value="from sharedService" />
+              <input type="number" min="1" [(ngModel)]="item.quantity" (change)="changeQuantity()"/>
             </div>
           </div>
         </div>
