@@ -1,5 +1,5 @@
 <div class="product-cart">
-  <a routerLink="/"><img src="{{ product.url }}" alt="this is img" /></a>
+  <a routerLink="/product-item-details" (click)="sendProductData(product)" ><img src="{{ product.url }}" alt="this is img" /></a>
   <h4>{{ product.name }}</h4>
   <p>{{ product.price }}</p>
   <select (change)="setQuantity($event)">

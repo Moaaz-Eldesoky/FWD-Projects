@@ -1,0 +1,13 @@
+<div class="product-card">
+  <img src="{{ myProduct.url }}" alt="this is img" />
+  <h4>{{ myProduct.name }}</h4>
+  <p>{{ myProduct.price }}</p>
+  <select (change)="setQuantity($event)">
+    <option value="1">1</option>
+    <option *ngFor="let i of arr" value="{{i}}">{{i}}</option>
+  </select>
+  <button type="button" class="btn btn-primary" (click)="addToCart(myProduct)">
+    Add To Cart
+  </button>
+  <a routerLink="/"><span>←</span> Back to product list</a>
+</div>

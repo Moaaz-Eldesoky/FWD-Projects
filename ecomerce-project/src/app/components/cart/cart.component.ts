@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProductItem } from 'src/app/models/model';
 import { ProductService } from 'src/app/services/product.service';
+import { ConfirmationService } from 'src/app/services/confirmation.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,12 +10,46 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit {
   cartProducts: IProductItem[] = [];
-  constructor(private productService:ProductService) {}
+  totalPrice: number = 0;
+
+  fullName: string = '';
+  addr: string = '';
+  cridit: number = 0;
+
+  constructor(
+    private productService: ProductService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit(): void {
     this.cartProducts = this.productService.cartItems;
+    this.calcTotalPrice();
+
   }
-  changeQuantity(){
-  this.productService.cartItems=this.cartProducts;
+  changeQuantity() {
+    this.productService.cartItems = this.cartProducts;
+    this.reCalcTotalPrice();
+  }
+
+  removeCartItem(p_id: number) {
+    this.productService.removeProduct(p_id);
+    this.reCalcTotalPrice();
+  }
+  calcTotalPrice() {
+    this.cartProducts.forEach((product) => {
+      this.totalPrice += product.price * product.quantity;
+    });
+  }
+  reCalcTotalPrice() {
+    this.totalPrice = 0;
+    this.cartProducts.forEach((product) => {
+      this.totalPrice += product.price * product.quantity;
+    });
+  }
+  submitAction(){
+    this.confirmationService.generateConfirmation(
+      this.fullName,
+      this.totalPrice
+    );
   }
 }

@@ -72,3 +72,10 @@ margin-top: 50px;
 label{
   margin-top: 20px;
 }
+.no-products{
+  text-align: center;
+  margin-top: 50px;
+  background-color: #fb4343;
+  height: 80px;
+  padding:20px
+}

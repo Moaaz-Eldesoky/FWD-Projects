@@ -5,7 +5,8 @@ import { IProductItem } from '../models/model';
   providedIn: 'root',
 })
 export class ProductService {
-  cartItems: IProductItem[] = []; /////
+  cartItems: IProductItem[] = [];
+  sigleProduct: IProductItem = {} as IProductItem;
 
   constructor() {}
 
@@ -13,7 +14,22 @@ export class ProductService {
     this.cartItems = items;
   }
   addCart(item: IProductItem) {
-    this.cartItems.push(item);
+    if (!this.cartItems.find((e) => e.id == item.id)) {
+      this.cartItems.push(item);
+      alert('product added successfully');
+    } else {
+      alert('this item already exist on your cart');
+    }
+  }
+  removeProduct(p_id: number) {
+    const indexOfProd = this.cartItems.findIndex((object) => {
+      return object.id === p_id;
+    });
+    this.cartItems.splice(indexOfProd, 1);
+    alert('product removed successffuly');
+  }
+  getProductData(product: IProductItem) {
+    this.sigleProduct=product;
   }
   // updateProductQuantities(newItems: IProductItem[]) {
 

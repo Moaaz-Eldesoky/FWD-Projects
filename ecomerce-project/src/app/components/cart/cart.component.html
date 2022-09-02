@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="cartProducts.length > 0; else elseblock">
     <div class="col-6">
       <div class="row prods">
         <div class="col-12" *ngFor="let item of cartProducts">
@@ -9,20 +9,33 @@
               <h4>{{ item.name }}</h4>
               <p>{{ item.price }}</p>
               <h5>Amount:</h5>
-              <input type="number" min="1" [(ngModel)]="item.quantity" (change)="changeQuantity()"/>
+              <input
+                type="number"
+                min="1"
+                [(ngModel)]="item.quantity"
+                (change)="changeQuantity()"
+              />
+              <button class="btn btn-danger" (click)="removeCartItem(item.id)">
+                remove from cart
+              </button>
             </div>
           </div>
         </div>
+        <div class="col-12"><h2>Total price = {{totalPrice}}</h2></div>
       </div>
     </div>
     <div class="col-6">
       <div class="user-data">
+        <!-- <input type="text" [(ngModel)]="fullName" />
+        <h2>{{fullName}}</h2> -->
         <form>
           <div class="form-group">
             <label for="fullNameInput">Full name</label>
             <input
               type="text"
               class="form-control"
+              name="fullName"
+              [(ngModel)]="fullName"
               id="fullNameInput"
               placeholder="Enter Full Name"
             />
@@ -32,6 +45,8 @@
             <input
               type="text"
               class="form-control"
+              name="address"
+              [(ngModel)]="addr"
               id="addressInput"
               placeholder="Enter your Address"
             />
@@ -43,11 +58,25 @@
               class="form-control"
               id="criditInput"
               placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
+              name="cridit"
+              [(ngModel)]="cridit"
             />
           </div>
-          <button routerLink="/confirmation" type="submit" class="btn btn-primary sub-btn">Submit</button>
+          <button
+            routerLink="/confirmation"
+            type="submit"
+            class="btn btn-primary sub-btn"
+            (click)="submitAction()"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
   </div>
+  <ng-template #elseblock>
+    <div class="no-products" #elseblock>
+      <h3>there is no products to show</h3>
+    </div>
+  </ng-template>
 </div>

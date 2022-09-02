@@ -12,13 +12,16 @@ export class ProductItemComponent implements OnInit {
   arr: number[] = [2, 3, 4, 5, 6, 7, 8, 9];
   constructor(private productService: ProductService) {}
   ngOnInit(): void {
-    this.product.quantity=this.product.quantity||1;
+    this.product.quantity = this.product.quantity || 1;
   }
 
   addToCart(product: IProductItem) {
     this.productService.addCart(product);
   }
-  setQuantity(e:any){
-    this.product.quantity=e.target.value;
+  setQuantity(e: any) {
+    this.product.quantity = e.target.value;
+  }
+  sendProductData(product:IProductItem){
+    this.productService.getProductData(product)
   }
 }
