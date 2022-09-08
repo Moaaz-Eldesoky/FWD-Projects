@@ -1,8 +1,7 @@
-
 <div class="container">
   <div class="row prods" >
     <div class="col-4" *ngFor="let product of products">
-      <app-product-item [product]="product"></app-product-item>
+      <app-product-item [product]="product" (addToCartForParent)="adding($event)"></app-product-item>
     </div>
   </div>
 </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IProductItem } from 'src/app/models/model';
 import { ProductService } from 'src/app/services/product.service';
 import { ConfirmationService } from 'src/app/services/confirmation.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-cart',
@@ -18,13 +20,13 @@ export class CartComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.cartProducts = this.productService.cartItems;
     this.calcTotalPrice();
-
   }
   changeQuantity() {
     this.productService.cartItems = this.cartProducts;
@@ -46,10 +48,12 @@ export class CartComponent implements OnInit {
       this.totalPrice += product.price * product.quantity;
     });
   }
-  submitAction(){
+  submitAction() {
     this.confirmationService.generateConfirmation(
       this.fullName,
       this.totalPrice
     );
+    this.productService.removeAllProducts();
+    this.router.navigate(['/confirmation']);
   }
 }

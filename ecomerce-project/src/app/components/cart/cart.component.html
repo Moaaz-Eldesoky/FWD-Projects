@@ -13,7 +13,7 @@
                 type="number"
                 min="1"
                 [(ngModel)]="item.quantity"
-                (change)="changeQuantity()"
+                (ngModelChange)="changeQuantity()"
               />
               <button class="btn btn-danger" (click)="removeCartItem(item.id)">
                 remove from cart
@@ -21,14 +21,16 @@
             </div>
           </div>
         </div>
-        <div class="col-12"><h2>Total price = {{totalPrice}}</h2></div>
+        <div class="col-12">
+          <h2>Total price = {{ totalPrice }}</h2>
+        </div>
       </div>
     </div>
     <div class="col-6">
       <div class="user-data">
         <!-- <input type="text" [(ngModel)]="fullName" />
         <h2>{{fullName}}</h2> -->
-        <form>
+        <form #form="ngForm" (ngSubmit)="submitAction()">
           <div class="form-group">
             <label for="fullNameInput">Full name</label>
             <input
@@ -36,9 +38,19 @@
               class="form-control"
               name="fullName"
               [(ngModel)]="fullName"
+              #fName="ngModel"
               id="fullNameInput"
               placeholder="Enter Full Name"
+              required
+              minlength="6"
             />
+          </div>
+          <!-- Error massages -->
+          <div *ngIf="fName.invalid && fName.dirty">
+            <div *ngIf="fName.errors?.['required']">Name is required</div>
+            <div *ngIf="fName.errors?.['minlength']">
+              The name must contain at least 6 characters
+            </div>
           </div>
           <div class="form-group">
             <label for="addressInput">Address</label>
@@ -49,7 +61,16 @@
               [(ngModel)]="addr"
               id="addressInput"
               placeholder="Enter your Address"
+              required
+              minlength="5"
+              #Address="ngModel"
             />
+          </div>
+          <div *ngIf="Address.invalid && Address.dirty">
+            <div *ngIf="Address.errors?.['required']">Name is required</div>
+            <div *ngIf="Address.errors?.['minlength']">
+              The Address must contain at least 5 characters
+            </div>
           </div>
           <div class="form-group">
             <label for="criditInput">Cridit Card</label>
@@ -60,16 +81,23 @@
               placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
               name="cridit"
               [(ngModel)]="cridit"
+              required
+              minlength="16"
+              #Cridit="ngModel"
             />
           </div>
-          <button
-            routerLink="/confirmation"
+          <div *ngIf="Cridit.invalid && Cridit.dirty">
+            <div *ngIf="Cridit.errors?.['required']">Name is required</div>
+            <div *ngIf="Cridit.errors?.['minlength']">
+              The cridit number must contain at least 16 characters
+            </div>
+          </div>
+          <input
             type="submit"
+            value="Submit"
             class="btn btn-primary sub-btn"
-            (click)="submitAction()"
-          >
-            Submit
-          </button>
+            [disabled]="form.invalid"
+          />
         </form>
       </div>
     </div>

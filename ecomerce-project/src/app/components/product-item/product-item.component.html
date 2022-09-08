@@ -2,7 +2,7 @@
   <a routerLink="/product-item-details" (click)="sendProductData(product)" ><img src="{{ product.url }}" alt="this is img" /></a>
   <h4>{{ product.name }}</h4>
   <p>{{ product.price }}</p>
-  <select (change)="setQuantity($event)">
+  <select ngModel #QS="ngModel" (ngModelChange)="setQuantity($event)">
     <option value="1">1</option>
     <option *ngFor="let i of arr" value="{{i}}">{{i}}</option>
   </select>

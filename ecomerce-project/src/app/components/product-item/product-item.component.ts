@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IProductItem } from 'src/app/models/model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -8,20 +8,30 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
-  @Input() product: IProductItem = {} as IProductItem;
+  @Input() product: IProductItem;
+  @Output() addToCartForParent:EventEmitter<IProductItem>=new EventEmitter;
   arr: number[] = [2, 3, 4, 5, 6, 7, 8, 9];
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {
+    this.product = {
+      id: 0,
+      name: '',
+      price: 0,
+      url: '',
+      description: '',
+      quantity: 0,
+    };
+  }
   ngOnInit(): void {
     this.product.quantity = this.product.quantity || 1;
   }
 
   addToCart(product: IProductItem) {
-    this.productService.addCart(product);
+    this.addToCartForParent.emit(product);
   }
   setQuantity(e: any) {
-    this.product.quantity = e.target.value;
+    this.product.quantity = e;
   }
-  sendProductData(product:IProductItem){
+  sendProductData(product:IProductItem){          //to share Data between product-item and product-item-details
     this.productService.getProductData(product)
   }
 }

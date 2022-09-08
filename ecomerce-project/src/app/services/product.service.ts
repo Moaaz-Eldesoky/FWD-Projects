@@ -28,8 +28,11 @@ export class ProductService {
     this.cartItems.splice(indexOfProd, 1);
     alert('product removed successffuly');
   }
+  removeAllProducts() {
+    this.cartItems=[];
+  }
   getProductData(product: IProductItem) {
-    this.sigleProduct=product;
+    this.sigleProduct = product;
   }
   // updateProductQuantities(newItems: IProductItem[]) {
 
