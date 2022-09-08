@@ -1,21 +1,23 @@
 
-# Project Title
+# Ecomerce-Project
 
-A brief description of what this project does and who it's for
-
-
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+ Ecomerce-Project created by Moaaz Eldesoky as a test project for FWD Program
 
 
-## Badges
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
+## Components
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+ - product-list component
+ - product-item component
+ - product-item-details component
+ - cart component
+ - bootstrp used for layout.
+
+
+### important info
+
+to run the code:
+ -first, you need to type npm install in your terminal.
+ -second run the project using "ng serve --port 4200" command.
+ by default it's using localhost 4200 if this port is busy you need to change the port using --port ex:3000
 
