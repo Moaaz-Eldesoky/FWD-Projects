@@ -73,23 +73,25 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="criditInput">Cridit Card</label>
+            <label for="creditInput">Credit Card</label>
             <input
               type="text"
               class="form-control"
-              id="criditInput"
+              name="credit"
+              [(ngModel)]="credit"
+              id="creditInput"
               placeholder="xxxxxxxxxxxxxxxxxxxxxxxx"
-              name="cridit"
-              [(ngModel)]="cridit"
               required
               minlength="16"
-              #Cridit="ngModel"
+              #Credit="ngModel"
             />
           </div>
-          <div *ngIf="Cridit.invalid && Cridit.dirty">
-            <div *ngIf="Cridit.errors?.['required']">Name is required</div>
-            <div *ngIf="Cridit.errors?.['minlength']">
-              The cridit number must contain at least 16 characters
+          <div *ngIf="Credit.invalid && Credit.dirty">
+            <div *ngIf="Credit.errors?.['required']">
+              credit number is required
+            </div>
+            <div *ngIf="Credit.errors?.['minlength']">
+              The credit number must contain at least 16 characters
             </div>
           </div>
           <input

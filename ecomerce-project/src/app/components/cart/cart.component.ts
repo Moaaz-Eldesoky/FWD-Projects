@@ -16,7 +16,7 @@ export class CartComponent implements OnInit {
 
   fullName: string = '';
   addr: string = '';
-  cridit: number = 0;
+  credit: any;
 
   constructor(
     private productService: ProductService,
